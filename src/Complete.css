@@ -1,0 +1,38 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    background-size: cover;
+    background-position: center;
+}
+
+.complete_container {
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(34, 90, 163, 0.148);
+    text-align: center;
+    width: 300px;   
+}
+
+.logo {
+    width: 50px;
+    margin-bottom: 5px;
+}
+
+.bank_header {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.backhome_button {
+    padding: 10px;
+    font-size: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+/* Centering text inside elements with the class App */
+.App {
+  text-align: center;
+}
+
+/* Styling for the logo */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+/* Styling for the header */
+.App-header {
+  background-color: #0D141C;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #0D141C;
+}
+
+/* Styling for links */
+.App-link {
+  color: #61dafb;
+}

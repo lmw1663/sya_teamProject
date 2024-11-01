@@ -12,6 +12,10 @@ function LoginPage() {
   // useNavigate으로 페이지 이동 관리
   const navigate  = useNavigate();
 
+  // 임시로 로그인 버튼 클릭 시 메인 페이지로 이동하는 함수
+  const handleLogin_temp = () => {
+    navigate('/main');
+  };
   // 로그인 버튼 클릭 시 실행.
   const handleLogin = async  () => {
     try {
@@ -33,6 +37,10 @@ function LoginPage() {
     }
   };
 
+  const handleSignup_temp = () => {
+    navigate('/signup1');
+  };
+
   return (
     <div className="login_page_back">
       <div className="login">
@@ -50,11 +58,12 @@ function LoginPage() {
           </div>
           {error && <div className="error_message">{error}</div>}
           <div className="login_button_box">
-            <button className="login_button" onClick={handleLogin}>Login</button>  
+            <button className="login_button" onClick={handleLogin_temp}>Login</button>  
           </div>
           <div className="login_button_box">
-          <a href="/signup"className="signup_link">SignUp</a>
+            <button className="signup_link" onClick={handleSignup_temp}>SignUp</button>  
           </div>
+          
           
         </div>
       </div>

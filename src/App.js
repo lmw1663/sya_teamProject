@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage';
-import SignUp from './SignUp1';
+import SignUp1 from './SignUp1';
+import SignUp2 from './SignUp2';
 import EnterDeposit from './EnterDeposit';
 import EnterWithdraw from './EnterWithdraw';
 import CompleteDP from './CompleteDP';
@@ -17,8 +18,10 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<LoginPage />} />
+            <Route path="/atm-react" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup1" element={<SignUp1 />} />
+            <Route path="/signup2" element={<SignUp2 />} />
             <Route path="/main" element={<MainPage />} />
             <Route path='/transfer' element={<Transfer />}/>
             <Route path="/enterDP" element={<EnterDeposit />} />

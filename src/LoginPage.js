@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import logo from "./img/logo.png";
 import pigImage from './img/pig.png';
 function LoginPage() {
   // id, pw를 저장할 state 생성
@@ -63,8 +62,6 @@ function LoginPage() {
           <div className="login_button_box">
             <button className="signup_link" onClick={handleSignup_temp}>SignUp</button>  
           </div>
-          
-          
         </div>
       </div>
       <div className='pig_image'>

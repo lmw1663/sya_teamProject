@@ -19,7 +19,48 @@ function MainPage(){
     const { id, accountNum, balance } = location.state || {};
     const [error, setError] = useState('');
     const [showNotifications, setShowNotifications] = useState(false);
+    const [budget, setBudget] = useState(100); // 총 예산 (예시값)
+    const [remaining, setRemaining] = useState(80); // 남은 예산 (예시값)
+    const [transactionHistory, setTransactionHistory] = useState([
+        {
+            amount: "$1000",
+            sourceAccount: "75**-**-**-****71",
+            recipientAccount: "75**-**-**-****71",
+            date: "2024-10-25"
+        },
+        {
+            amount: "$1000",
+            sourceAccount: "75**-**-**-****71",
+            recipientAccount: "75**-**-**-****71",
+            date: "2024-10-25"
+        },
+        {
+            amount: "$1000",
+            sourceAccount: "75**-**-**-****71",
+            recipientAccount: "75**-**-**-****71",
+            date: "2024-10-25"
+        },
+        {
+            amount: "$1000",
+            sourceAccount: "75**-**-**-****71",
+            recipientAccount: "75**-**-**-****71",
+            date: "2024-10-25"
+        },
+        {
+            amount: "$1000",
+            sourceAccount: "75**-**-**-****71",
+            recipientAccount: "75**-**-**-****71",
+            date: "2024-10-25"
+        }
+    ]);
     
+    const [statisticsData, setStatisticsData] = useState([
+        { category: "Online Shopping", value: 40, color: "#34c759" },
+        { category: "Household Expenses", value: 20, color: "#ff9500" },
+        { category: "Convenience Store", value: 25, color: "#af52de" },
+        { category: "Dining Out", value: 15, color: "#ff3b30" },
+    ]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -49,25 +90,118 @@ function MainPage(){
         fetchData();
     }, [id]);
 
-    const handleLogout = async () => {
-        try {
-            const response = await fetch('/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (response.ok) {
-                navigate('/login');
-            } else {
-                setError('로그아웃에 실패했습니다.');
+    useEffect(() => {
+        // 서버로부터 예산 정보를 가져오는 비동기 함수
+        const fetchBudgetData = async () => {
+            try {
+                const response = await axios.get("/api/budget"); // 서버에서 예산 데이터를 가져옴
+                const data = response.data;
+                setBudget(data.totalBudget);
+                setRemaining(data.remainingBudget);
+            } catch (error) {
+                console.error("Error fetching budget data", error);
             }
-        } catch (error) {
-            setError('서버 오류. 잠시 후 다시 시도해주세요.');
-        }
-    };
+        };
 
+        fetchBudgetData();
+    }, []);
+
+    // 예산 대비 남은 비율 계산
+    const remainingPercentage = (remaining / budget) * 100;
+
+    // const handleLogout = async () => {
+    //     try {
+    //         const response = await fetch('/logout', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
+
+    //         if (response.ok) {
+    //             navigate('/login');
+    //         } else {
+    //             setError('로그아웃에 실패했습니다.');
+    //         }
+    //     } catch (error) {
+    //         setError('서버 오류. 잠시 후 다시 시도해주세요.');
+    //     }
+    // };
+    useEffect(() => {
+        const fetchTransactionData = async () => {
+            try {
+                const transactionResponse = await axios.get("/api/transaction-history", {
+                    params: { userId: "user123", password: "pass123" }
+                });
+                setTransactionHistory(transactionResponse.data);
+
+                const statisticsResponse = await axios.get("/api/statistics", {
+                    params: { userId: "user123", password: "pass123" }
+                });
+                setStatisticsData(statisticsResponse.data);
+            } catch (error) {
+                console.error("Error fetching data", error);
+            }
+        };
+        fetchTransactionData();
+    }, []);
+
+
+    function TransactionHistory({ data }) {
+        return (
+            <div className="transaction_history">
+                <div className="transaction_history_text">Transaction History</div>
+                <table className="transaction_history_table">
+                    <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>Source Account</th>
+                            <th>Recipient Account</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.amount}</td>
+                                <td>{item.sourceAccount}</td>
+                                <td>{item.recipientAccount}</td>
+                                <td>{item.date}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+    function StatisticsChart({ data }) {
+        const total = data.reduce((sum, item) => sum + item.value, 0);
+    
+        return (
+            <div className="statistics_chart">
+                <div className="statistics_chart_text">Statistics Chart</div>
+                <div className="pie_chart">
+                    {data.map((item, index) => {
+                        const angle = (item.value / total) * 360;
+                        return (
+                            <div
+                                key={index}
+                                className="pie_slice"
+                                style={{
+                                    '--start-angle': `${index === 0 ? 0 : data[index - 1].cumulativeAngle}deg`,
+                                    '--end-angle': `${angle}deg`,
+                                    background: item.color,
+                                }}
+                            >
+                                <span>{item.category}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+    
     const handleNavigation = (path) => {
         navigate(path, { state: { id, accountNum, balance } });
     };
@@ -109,7 +243,7 @@ function MainPage(){
                     </div>
                 </div>
             </div>
-            <div className="content_container">
+            
             <div className="main_contents">
                 
                 <div className="main_header">
@@ -136,14 +270,14 @@ function MainPage(){
                     
                 </div>
                 <div className="main_body">
-                    <div className="first content">
-                        <div className="summarize balance">
+                    <div className="first_content">
+                        <div className="summarize_balance" >
                             <div className="Total_Accounts_Balance_container">
-                                <div className="Total_Accounts_Balance_text">Total_Accounts_Balance</div>
+                                <div className="Total_Accounts_Balance_text">Total Accounts Balance</div>
                                 <div className="Total_Accounts_Balance">$324k</div>
                             </div>
                             <div className="Total_Spend_Amount_container">
-                                <div className="Total_Spend_Amount_text">Total_Spend_Amount</div>
+                                <div className="Total_Spend_Amount_text">Total Spend Amount</div>
                                 <div className="Total_Spend_Amount">$324k</div>
                             </div>
                             <div className="Mileage_container">
@@ -154,19 +288,26 @@ function MainPage(){
                         
 
                     </div>
-                    <div className="second content">
-                        <div className="transfer_history">
-
+                    <div className="second_content">
+                        <div className="remaining_budget">
+                        <div className="remaining_budget_text">Remaining Budget</div>
+                            <div className="remaining_percentage">
+                                <div className="remaining_percentage_stick_graph"
+                                    style={{ width: `${remainingPercentage}%` }}>
+                                        <div className="remaining_percentage_text">{remainingPercentage}%</div>
+                                    </div>
+                            </div>
+                            <div className="remaining_budget_left_text">You have ${remaining} left to spend</div>
                         </div>
-                        <div className="statistics consume">
-
-                        </div>
-
-                </div>
+                    </div>
+                    <div className="third_content">
+                    <div className="dashboard">
+                        <TransactionHistory data={transactionHistory} />
+                        <StatisticsChart data={statisticsData} />
+                    </div>
+                </div>    
             </div>
         </div>
-            </div>
-            
     </div>               
 
     );

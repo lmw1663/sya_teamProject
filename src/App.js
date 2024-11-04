@@ -11,6 +11,10 @@ import CompleteTF from './CompleteTF';
 import InquiryTrans from './InquiryTrans';
 import MainPage from './MainPage';
 import Transfer from './Transfer';
+import Profile from'./ProfilePage';
+import EditProfile from './EditProfile';
+import About from'./About';
+import AccountPage from './AccountPage'; 
 
 function App() {
   return (
@@ -23,6 +27,7 @@ function App() {
             <Route path="/signup1" element={<SignUp1 />} />
             <Route path="/signup2" element={<SignUp2 />} />
             <Route path="/main" element={<MainPage />} />
+            <Route path='/profile' element={<Profile />}/>
             <Route path='/transfer' element={<Transfer />}/>
             <Route path="/enterDP" element={<EnterDeposit />} />
             <Route path="/enterWD" element={<EnterWithdraw />} />
@@ -30,6 +35,11 @@ function App() {
             <Route path="/completeWD" element={<CompleteWD />} />
             <Route path="/completeTF" element={<CompleteTF />} />
             <Route path="/inquiry" element={<InquiryTrans />} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/editprofile" element={<EditProfile />} />
+            <Route path="/account" element={<AccountPage />} />
+            
+            
             {/* Default route to handle direct access to the root */}
           </Routes>
         </Router>

@@ -11,10 +11,6 @@ function LoginPage() {
   // useNavigate으로 페이지 이동 관리
   const navigate  = useNavigate();
 
-  // 임시로 로그인 버튼 클릭 시 메인 페이지로 이동하는 함수
-  const handleLogin_temp = () => {
-    navigate('/main');
-  };
   // 로그인 버튼 클릭 시 실행.
   const handleLogin = async  () => {
     try {
@@ -40,6 +36,9 @@ function LoginPage() {
     navigate('/signup1');
   };
 
+  const handleLogin_temp = () => {
+    navigate('/main');
+  };
   return (
     <div className="login_page_back">
       <div className="login">
@@ -47,11 +46,11 @@ function LoginPage() {
           <div className="login_text">  Login</div>
           <div className="input_container">
             <div className ="id_text" >  ID</div>
-            <div class="input-wrapper">
+            <div className="input-wrapper">
               <input type="text" value={id} onChange={(e) => setId(e.target.value)}  /> 
             </div>
             <div className ="password_text" >Password</div>
-            <div class="input-wrapper">
+            <div className="input-wrapper">
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
           </div>
@@ -70,5 +69,4 @@ function LoginPage() {
     </div>
   );
 }
-
 export default LoginPage;

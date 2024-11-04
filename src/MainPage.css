@@ -2,6 +2,7 @@
 .background {
     display: flex;
     background-color: #000000;
+    height: 100vh;
     
 }
 
@@ -108,10 +109,11 @@
     right: 0;
     width: 83%; 
     justify-content: flex-start; /* 위쪽 정렬 */
-    height: 100vh; /* 전체 화면 높이 */
+    
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #0D141C;
 
 }
 
@@ -290,6 +292,8 @@
     border-radius: 10px;
     color: #ffffff;
     margin-bottom: 20px;
+    max-width: 100%; /* 부모 div의 너비를 초과하지 않음 */
+    max-height: 100%; /* 부모 div의 높이를 초과하지 않음 */
 }
 
 .transaction_history_table {
@@ -303,7 +307,7 @@
     padding: 10px;
     text-align: left;
     border: 1px solid #ffffff;
-    font-size: 20px;
+    font-size: 0.8em;
 }
 
 .transaction_history_table th {
@@ -354,7 +358,7 @@
     display: flex;
     gap: 20px;
     width: 100%;
-    height: 50%;
+    height: 45%;
     justify-content: space-around; /* 요소간의 간격 */
     margin-top: 20px;
     
@@ -364,7 +368,7 @@
     flex-direction: row;
     gap: 200px;
     width: 79%;
-    height: 90%;
+    height: 87%;
     padding: 10px;
     background-color: #1c1c2c;
     border-radius: 15px;

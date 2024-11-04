@@ -174,6 +174,7 @@ function MainPage(){
             </div>
         );
     }
+    
     function StatisticsChart({ data }) {
         const total = data.reduce((sum, item) => sum + item.value, 0);
     
@@ -202,8 +203,10 @@ function MainPage(){
         );
     }
     
-    const handleNavigation = (path) => {
-        navigate(path, { state: { id, accountNum, balance } });
+
+    
+    const handleNavigation = (path, extraState = {}) => {
+        navigate(path, { state: { id, accountNum, balance, ...extraState } });
     };
 
     return (
@@ -214,13 +217,13 @@ function MainPage(){
                     <div className="sidebar_bank_name">ReAction Bank</div>
                 </div>
                 <div className="sidebar_menu">
-                    <div className="sidebar_menu_item" onClick={() => handleNavigation('/transfer')}>
+                    <div className="sidebar_menu_item" onClick={() => handleNavigation('/main')}>
                         <div className="sidebar_menu_icon">
                             <img className="sidebar_menu_icon_img" src= {icon_home} alt="Transfer" />
                         </div>
                         <div className="sidebar_menu_text">Home</div>
                     </div>
-                    <div className="sidebar_menu_item" onClick={() => handleNavigation('/transfer')}>
+                    <div className="sidebar_menu_item" onClick={() => handleNavigation('/account')}>
                         <div className="sidebar_menu_icon">
                             <img className="sidebar_menu_icon_img" src={icon_account} alt="Transfer" />
                         </div>
@@ -230,12 +233,12 @@ function MainPage(){
                             <img className="sidebar_menu_icon_img" src={icon_transfer} alt="Transfer" />
                         </div>
                         <div className="sidebar_menu_text">Transfer</div>
-                    </div><div className="sidebar_menu_item" onClick={() => handleNavigation('/transfer')}>
+                    </div><div className="sidebar_menu_item" onClick={() => handleNavigation('/millege')}>
                         <div className="sidebar_menu_icon">
                             <img className="sidebar_menu_icon_img" src={icon_millege} alt="Transfer" />
                         </div>
                         <div className="sidebar_menu_text">Millege</div>
-                    </div><div className="sidebar_menu_item" onClick={() => handleNavigation('/transfer')}>
+                    </div><div className="sidebar_menu_item" onClick={() => handleNavigation('/analyze')}>
                         <div className="sidebar_menu_icon">
                             <img className="sidebar_menu_icon_img" src={icon_analytics}alt="Transfer" />
                         </div>
@@ -260,10 +263,10 @@ function MainPage(){
                                 </div>
                             )}
                         </div>
-                        <div className="setting" onClick={() => handleNavigation('/setting')}>
+                        <div className="setting" onClick={() => handleNavigation('/setting',{id})}>
                             <img src={icon_setting} alt="Setting" />
                         </div>
-                        <div className="profile" onClick={() => handleNavigation('/profile')}>
+                        <div className="profile" onClick={() => handleNavigation('/profile', { id })}>
                             <img src={icon_profile} alt="Profile" />
                         </div>
                     </div>
@@ -277,7 +280,7 @@ function MainPage(){
                                 <div className="Total_Accounts_Balance">$324k</div>
                             </div>
                             <div className="Total_Spend_Amount_container">
-                                <div className="Total_Spend_Amount_text">Total Spend Amount</div>
+                                <div className="Total_Spend_Amount_text">Monthly Spending</div>
                                 <div className="Total_Spend_Amount">$324k</div>
                             </div>
                             <div className="Mileage_container">

@@ -155,7 +155,7 @@ function AccountPage() {
                         
                     </div>
                     <div className="main_body">
-                        <div className="first_content">
+                        <div className="first_content_account">
                         <div className="bank_account">
                         {bankAccounts && bankAccounts.length > 0 ? (
                             bankAccounts.map((account, index) => (

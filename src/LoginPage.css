@@ -135,15 +135,6 @@
 }
 
 
-.signup_link a {
-    color: inherit;           /* 버튼의 색상 상속 */
-    text-decoration: none;    /* 링크 밑줄 제거 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
 
 .signup_link {
     height:2rem;

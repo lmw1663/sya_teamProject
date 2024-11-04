@@ -109,12 +109,11 @@
     right: 0;
     width: 83%; 
     justify-content: flex-start; /* 위쪽 정렬 */
-    
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #0D141C;
-
 }
 
 /* 메인 헤더 */
@@ -154,12 +153,12 @@
 
 }
 
-.first_content {
+.first_content_account {
     display: flex;
     flex-direction: row; /* 수평 방향으로 배치 */
     gap: 20px; /* 요소 간의 간격 */
     width: 100%;
-    height: 300px;
+    height: 400px;
     justify-content: flex-start; /* 왼쪽 정렬 */
     margin-top: 20px;
 
@@ -173,26 +172,56 @@
     width: 100%;
     height: 100%;
     justify-content: flex-start; /* 왼쪽 정렬 */
-    padding-left: 10%;
-    padding-right: 10%;
-    overflow-y:hidden; /* 가로 스크롤 추가 */
+    padding-left: 3%;
+    padding-right: 3%;
+    overflow:auto; 
     scrollbar-width: thin; /* Firefox에서 스크롤바 너비 조절 */
     -ms-overflow-style: none; /* IE와 Edge에서 스크롤바 숨김 */
 }
 
 /* 크롬, 사파리, 엣지의 스크롤바 스타일 제거 */
 .bank_account::-webkit-scrollbar {
-    display: none;
+    height: 8px; /* 스크롤바 높이 */
+}
+
+.bank_account::-webkit-scrollbar-track {
+    background: #1a1a2e; /* 스크롤 트랙 배경색 */
+    border-radius: 10px; /* 트랙 둥글게 */
+    margin: 4px 0; /* 트랙의 위아래 여백 */
+}
+
+.bank_account::-webkit-scrollbar-thumb {
+    background-color: #1c1c2c; /* 스크롤 thumb 색상 */
+    border-radius: 10px; /* thumb 둥글게 */
+    border: 2px solid #1a1a2e; /* thumb과 트랙 사이의 간격을 만듦 */
+    transition: background-color 0.3s ease; /* hover 효과 추가 */
+}
+
+.bank_account::-webkit-scrollbar-thumb:hover {
+    background-color: #1c1c2c; /* hover 시 thumb 색상 */
+}
+
+/* Firefox 전용 스크롤바 스타일 */
+.bank_account {
+    scrollbar-color: #1c1c2c #1a1a2e; /* thumb 색상 및 트랙 배경색 */
+    scrollbar-width: thin; /* 스크롤바 두께 */
+}
+
+/* 스크롤바 전체 스타일 */
+.bank_account {
+    overflow-x: auto; /* 가로 스크롤 활성화 */
+    padding-bottom: 5px; /* 스크롤바가 컨텐츠와 겹치지 않도록 여백 추가 */
 }
 .account_container {
     display: flex;
-    height: 100%;
-    width: 600px;
+    flex: 0 0 200px; /* 너비를 고정 */
+    width: 500px !important; /* 너비를 강제로 설정 */
+    height: 400pz;
     flex-direction: column; /* 수직 방향으로 텍스트 정렬 */
-    align-items:flex-start; /* 텍스트를 가운데 정렬 */
-    justify-content:flex-start; 
+    align-items: flex-start; /* 텍스트를 왼쪽 정렬 */
+    justify-content: flex-start; 
     text-align: center;
-    padding-top:4%;
+    padding-top: 4%;
     padding-left: 3%;
     background-color: #1c1c2c;
     border-radius: 20px;

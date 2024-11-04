@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import logo from "./img/logo.png";
 import pigImage from './img/pig.png';
 function LoginPage() {
   // id, pw를 저장할 state 생성
@@ -32,6 +31,11 @@ function LoginPage() {
         setError('서버 오류. 잠시 후 다시 시도해주세요.');
     }
   };
+
+  const handleSignup_temp = () => {
+    navigate('/signup1');
+  };
+
   const handleLogin_temp = () => {
     navigate('/main');
   };
@@ -55,9 +59,8 @@ function LoginPage() {
             <button className="login_button" onClick={handleLogin_temp}>Login</button>  
           </div>
           <div className="login_button_box">
-          <a href="/signup"className="signup_link">SignUp</a>
+            <button className="signup_link" onClick={handleSignup_temp}>SignUp</button>  
           </div>
-          
         </div>
       </div>
       <div className='pig_image'>

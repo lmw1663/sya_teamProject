@@ -125,7 +125,7 @@ function ProfilePage() {
                         
                     </div>
                     <div className="main_body">
-                        <div className="first_content">
+                        <div className="first_content" >
                             <div className="userIcon_container">
                                 <img src={icon_profile} alt="Profile" className="userIcon" />
                             </div>

@@ -185,10 +185,9 @@
     display: none;
 }
 .account_container {
-    padding-top: 100px;
     display: flex;
-    width: 30%;
     height: 100%;
+    width: 600px;
     flex-direction: column; /* 수직 방향으로 텍스트 정렬 */
     align-items:flex-start; /* 텍스트를 가운데 정렬 */
     justify-content:flex-start; 

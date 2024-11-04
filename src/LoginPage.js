@@ -32,7 +32,9 @@ function LoginPage() {
         setError('서버 오류. 잠시 후 다시 시도해주세요.');
     }
   };
-
+  const handleLogin_temp = () => {
+    navigate('/main');
+  };
   return (
     <div className="login_page_back">
       <div className="login">
@@ -40,17 +42,17 @@ function LoginPage() {
           <div className="login_text">  Login</div>
           <div className="input_container">
             <div className ="id_text" >  ID</div>
-            <div class="input-wrapper">
+            <div className="input-wrapper">
               <input type="text" value={id} onChange={(e) => setId(e.target.value)}  /> 
             </div>
             <div className ="password_text" >Password</div>
-            <div class="input-wrapper">
+            <div className="input-wrapper">
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
           </div>
           {error && <div className="error_message">{error}</div>}
           <div className="login_button_box">
-            <button className="login_button" onClick={handleLogin}>Login</button>  
+            <button className="login_button" onClick={handleLogin_temp}>Login</button>  
           </div>
           <div className="login_button_box">
           <a href="/signup"className="signup_link">SignUp</a>
@@ -64,5 +66,4 @@ function LoginPage() {
     </div>
   );
 }
-
 export default LoginPage;

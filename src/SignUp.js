@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import logo from "./img/logo.png";
+import pigImage from "./img/pig.png"
 
 
 function SignUp() {
